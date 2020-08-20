@@ -104,7 +104,7 @@ def split_parts(key, parts, test):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="Split key into XOR parts for an HSM")
-	parser.add_argument("key", metavar="KEY", type=str, help="Key")
+	parser.add_argument("keys", metavar="KEY", type=str, nargs="+", help="Key parts")
 	parser.add_argument("-p", "--parts", dest="parts", type=int, default=2, help="number of parts")
 	parser.add_argument("-t", "--test", action="store_true", help="simplify test keys for entry on a phone keypad")
 	parser.add_argument("-k", "--kcv", choices=kcv.TYPES, help="KCV algorithm")
@@ -114,13 +114,21 @@ if __name__ == "__main__":
 	def _wrap(text, n):
 		return " ".join(textwrap.wrap(text, n))
 
-	key = _wrap(args.key, 4)
-	if args.kcv:
-		print(f"Input: {key} (KCV {_wrap(kcv.kcv(key, args.kcv)[0:6], 2)})")
-	else:
-		print(f"Input: {key}")
+	if len(args.keys) > 1:
+		for i, key in enumerate(args.keys):
+			key = " ".join(textwrap.wrap(key, 4))
+			if args.kcv:
+				print(f"Input {i + 1}: {key} (CCV {_wrap(kcv.kcv(key, args.kcv)[0:6], 2)})")
+			else:
+				print(f"Input {i + 1}: {key}")
 
-	keys = split_parts(args.key, args.parts, args.test)
+	key = xor_merge.merge_parts(args.keys)
+	if args.kcv:
+		print(f"Input: {_wrap(key, 4)} (KCV {_wrap(kcv.kcv(key, args.kcv)[0:6], 2)})")
+	else:
+		print(f"Input: {_wrap(key, 4)}")
+
+	keys = split_parts(key, args.parts, args.test)
 	for i, key in enumerate(keys):
 		key = _wrap(key, 4)
 		if args.kcv:
