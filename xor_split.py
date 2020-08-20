@@ -83,7 +83,7 @@ def split_parts(key, parts, test):
 
 		# There should be no repetitions of 2 or 3
 		for part in keys:
-			part = codecs.encode(bytes(key), "hex").upper().decode("us-ascii")
+			part = codecs.encode(bytes(part), "hex").upper().decode("us-ascii")
 			assert "22" not in part, part
 			assert "33" not in part, part
 	else:
