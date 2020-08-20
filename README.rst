@@ -1,3 +1,15 @@
+HSM XOR key parts utilities
+===========================
+
+Overview
+--------
+
+Split and combine XOR keys for input into an HSM with any number of
+parts and calculate a KCV using 3DES or AES. For test keys only.
+
+Examples
+--------
+
 Split keys::
 
     $ ./xor_split.py "1000 0000 0000 0000 0000 0000 0000 0001" -k 3des -t
