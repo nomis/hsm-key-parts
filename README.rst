@@ -7,6 +7,11 @@ Overview
 Split and combine XOR keys for input into an HSM with any number of
 parts and calculate a KCV using 3DES or AES. For test keys only.
 
+Dependencies
+------------
+
+* `pycrypto <https://github.com/pycrypto/pycrypto>`_ 2.7a1
+
 Examples
 --------
 
