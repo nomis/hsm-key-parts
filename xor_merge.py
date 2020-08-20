@@ -39,7 +39,7 @@ def merge_parts(keys):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="Merge HSM key parts into one using XOR")
-	parser.add_argument("keys", metavar="KEY", type=str, nargs="+", help="Key parts")
+	parser.add_argument("keys", metavar="KEY", type=str, nargs="+", help="key parts")
 	parser.add_argument("-k", "--kcv", choices=kcv.TYPES, help="KCV algorithm")
 
 	args = parser.parse_args()

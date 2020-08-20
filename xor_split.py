@@ -104,8 +104,8 @@ def split_parts(key, parts, test):
 
 if __name__ == "__main__":
 	parser = argparse.ArgumentParser(description="Split key into XOR parts for an HSM")
-	parser.add_argument("keys", metavar="KEY", type=str, nargs="+", help="Key parts")
-	parser.add_argument("-p", "--parts", dest="parts", type=int, default=2, help="number of parts")
+	parser.add_argument("keys", metavar="KEY", type=str, nargs="+", help="input key parts")
+	parser.add_argument("-p", "--parts", dest="parts", type=int, default=2, help="number of output parts")
 	parser.add_argument("-t", "--test", action="store_true", help="simplify test keys for entry on a phone keypad")
 	parser.add_argument("-k", "--kcv", choices=kcv.TYPES, help="KCV algorithm")
 
