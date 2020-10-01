@@ -14,12 +14,16 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
+TYPES = ["3des", "aes"]
+
+
 from Crypto.Cipher import AES, DES3
-from Crypto.Hash import CMAC
+try:
+	from Crypto.Hash import CMAC
+	TYPES.extend(["3des-cmac", "aes-cmac"])
+except ImportError:
+	pass
 import codecs
-
-
-TYPES = ["3des", "3des-cmac", "aes", "aes-cmac"]
 
 
 def kcv(key, type):
