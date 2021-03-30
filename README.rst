@@ -10,7 +10,7 @@ parts and calculate a KCV using 3DES or AES. For test keys only.
 Dependencies
 ------------
 
-* `pycrypto <https://github.com/pycrypto/pycrypto>`_ (>=2.7a1 for CMAC support)
+* `pycryptodome <https://github.com/Legrandin/pycryptodome/>`_
 
 Examples
 --------
